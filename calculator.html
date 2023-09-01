@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            height: 580px;
+            width: 404px;
+            border: 2px solid #FBFBFA;
+            display: flex;
+            flex-direction: column;
+            margin: 75px 0px 0px 440px;
+            background-color:#FBFBFA;
+            border-radius: 15px;
+            
+        }
+        #first{
+            background-color:rgb(233, 232, 232);
+            border-radius: 15px;
+            height: 30px;
+             width: 79%;
+              /* border: 2px solid lawngreen; */
+             padding: 35px 0px 0px 38px;
+             margin: 53px 0px 50px 18px;
+        }
+        #container{
+            border-radius: 15px;
+            height: 359px;
+            width: 85%;
+            border: 2px solid #FBFBFA;
+            padding: 26px 5px 0px 9px;
+            margin: -27px 0px 2px 18px;
+           display: grid;
+           grid-template-columns: repeat(4,67px);
+           grid-template-rows: repeat(4,80px);
+           gap: 10px;
+           justify-content: space-evenly;
+             
+            
+           
+
+            
+        }
+        #container>div:nth-child(1){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px ;
+        }
+        #container>div:nth-child(2){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px ;
+        }
+        #container>div:nth-child(3){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(4){
+          background-color: black;
+          color: white;
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(5){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(6){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+    #container>div:nth-child(7){
+        background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+    
+        }
+        #container>div:nth-child(8){
+            background-color: black;
+          color: white;
+            text-align: center;
+            border-radius: 15px;;
+        }
+        #container>div:nth-child(9){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(10){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(11){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(12){
+            background-color: black;
+          color: white;
+            text-align: center;
+            border-radius: 15px;;
+        }
+        #container>div:nth-child(13){
+            background-color:red;
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(14){
+            background-color:rgb(233, 232, 232);
+            text-align: center;
+            border-radius: 15px;
+        }
+        #container>div:nth-child(15){
+            background-color:black;
+            text-align: center;
+            border-radius: 15px;
+            color: white;
+        }
+        #container>div:nth-child(16){
+           background-color: black;
+           text-align: center;
+            border-radius: 15px;
+            color: white;
+        }
+        body>h1{
+            text-align: center;
+            font-size: 63px;
+            color: rgb(82, 82, 143);
+        }
+        </style>
+        <body>
+            <h1>Masai Calculator</h1>
+          
+<div id="parent">
+    <div id="first"></div>
+    <div id="container">
+     <div>
+        <h2 >1</h2>
+
+     </div>
+     <div>
+      <h2 >2</h2>
+     </div>
+     <div>
+        <h2 >3</h2>
+     </div>
+    <div class="oper">
+        <h3 >+</h3>
+
+    </div>
+    <div>
+        <h2 >4</h2>
+    </div>
+    <div>
+        <h2 > 5</h2>
+    </div>
+    <div>
+        <h2 >6</h2>
+    </div>
+    <div class="oper">
+        <h3 >-</h3>
+    </div>
+    <div>
+        <h2 >7</h2>
+    </div>
+    <div>
+        <h2 > 8</h2>
+
+    </div>
+    <div>
+        <h2 >9</h2>
+    </div>
+    <div  class="oper">
+        <h3 >*</h3>
+    </div>
+    <div>
+        <h1>C</h1>
+    </div>
+    <div><h2 >0</h2></div>
+    <div id="h4"><h4>=</h4></div>
+    <div class="oper">
+        <h3 >/</h3>
+    </div>
+    </div>
+    
+</div>
+</body>
+<script>
+  let head = document.getElementById("first");
+let firstNumber = "";
+let secondNumber = "";
+let fullExpression = ""; 
+let IsFirstNumber = true;
+let cal = "";
+let ek = document.getElementById("h4");
+let keypad = document.querySelectorAll("#container > div > h2");
+let operators = document.querySelectorAll(".oper > h3");
+let result = "";
+
+for (let i = 0; i < keypad.length; i++) {
+  keypad[i].addEventListener("click", function (e) {
+    if (IsFirstNumber === true) {
+      firstNumber += e.target.innerText;
+      fullExpression += e.target.innerText; 
+      head.innerText = fullExpression;
+    } else {
+      secondNumber += e.target.innerText;
+      fullExpression += e.target.innerText; 
+      head.innerText = fullExpression;
+    }
+  });
+}
+
+for (let i = 0; i < operators.length; i++) {
+  operators[i].addEventListener("click", function (e) {
+    if (result !== "") {
+      
+      firstNumber = result;
+      fullExpression = result; 
+      result = ""; 
+    }
+    IsFirstNumber = false;
+    cal = e.target.innerText; 
+    fullExpression += cal; 
+    head.innerText = fullExpression;
+  });
+}
+
+function sum(firstNumber, secondNumber, cal) {
+  switch (cal) {
+    case "+":
+      return Number(firstNumber) + Number(secondNumber);
+    case "-":
+      return Number(firstNumber) - Number(secondNumber);
+    case "*":
+      return Number(firstNumber) * Number(secondNumber);
+    case "/":
+      return Number(firstNumber) / Number(secondNumber);
+  }
+}
+
+ek.addEventListener("click", function () {
+  result = sum(firstNumber, secondNumber, cal);
+  fullExpression =result; 
+  head.innerText = fullExpression;
+});
+
+
+
+let clearButton = document.querySelector("#container > div > h1");
+clearButton.addEventListener("click", function () {
+    head.innerText = ""; 
+  firstNumber = ""; 
+  secondNumber = ""; 
+  fullExpression = ""; 
+  IsFirstNumber = true; 
+  cal = ""; 
+  result = "";
+});
+
+
+
+
+        </script>
+</html>
