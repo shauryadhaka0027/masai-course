@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+.data{
+    height: 130px;
+    margin: auto;;
+    display: flex;
+    justify-content: space-around;
+}
+.score{
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.keypad{
+   height: 380px;
+    display: grid;
+    grid-template-columns: repeat(3,70px);
+    grid-template-rows: repeat(3,80px);
+    gap: 15px;
+    justify-content: center;
+    
+
+    
+}
+.keypad >div{
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    text-align: center;
+    height: 70px;
+    font-size: 40px;
+
+    
+}
+
+.enter{
+    display: flex;
+    justify-content: center;
+    
+}
+</style>
+<body>
+   <div class="data">
+ <div id="min" style="background-color: red; font-size: 60px ;height: 80px ; width: 90px;">120</div>
+<div id="max"  style="background-color: green;font-size: 60px; height: 80px ; width: 90px;">600</div>
+
+</div>
+<div class="score">
+    <div  style="background-color: beige;  height: 100px ;
+    width: 250px; text-align: center; font-size: 60px; ">score</div>
+</div>
+<div class="keypad">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+    <div>9</div>
+    <div>.</div>
+    <div>0</div>
+    <div>C</div>
+</div>
+
+<div class="enter">
+    <div style="background-color: azure;font-size: 40px;
+    height: 60px;
+    width: 170px; text-align: center;">Enter</div>
+</div>
+   
+</body>
+<script>
+let minimum=document.getElementById("min");
+let maximum=document.getElementById("max");
+let scoreButton=document.querySelector(".score>div")
+let firstBag="";
+
+let keypadButton=document.querySelectorAll(".keypad >div")
+let enterButton=document.querySelector(".enter>div")
+for(i=0;i<keypadButton.length;i++){
+    keypadButton[i].addEventListener("click",function(e){
+      firstBag+=e.target.innerText
+      scoreButton.innerText=firstBag
+      
+    })
+}
+enterButton.addEventListener("click",function(){
+    if(Number(scoreButton.innerText)<Number(minimum.innerText)){
+          minimum.innerText=scoreButton.innerText
+      }
+      else if(Number(scoreButton.innerText)>Number(maximum.innerText)){
+        maximum.innerText=scoreButton.innerText
+      }
+      scoreButton.innerText="";
+})
+</script>
+</html>
