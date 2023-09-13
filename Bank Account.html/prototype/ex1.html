@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    let obj1={
+        person1 : "shaurya",
+        sayHello : function(){
+         console.log("hey shaurya")
+        }
+    }
+    let obj2={
+        person2: "harsh",
+        sayHello2 : function(){
+            console.log("hey harsh")
+        }
+    }
+    Object.setPrototypeOf(obj2,obj1)
+    console.log(obj2)
+    console.log(obj2.person1)
+</script>
+</html>

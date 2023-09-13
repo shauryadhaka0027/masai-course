@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>books</title>
+</head>
+<body>
+  
+    <form id="authorForm">
+        <input type="text"  id="authorname" placeholder="Enter Author name">
+        <input type="date"  id="authordate" placeholder="Enter Author Year">
+        <input type="text"  id="authornat" placeholder="Enter Nationality">
+        <input  type="submit">
+    </form>
+    
+    <form id="bookForm1">
+       <input type="text"  id="booktitle1" placeholder="Enter Book title">
+       <input type="text"  id="bookgenre1" placeholder="Enter Book genre">
+       <input type="text"  id="price1" placeholder="Enter price">
+       <input type="submit">
+    </form>
+
+    <form id="bookForm2">
+       <input type="text"  id="booktitle2" placeholder="Enter Book title">
+       <input type="text"  id="bookgenre2" placeholder="Enter Book genre">
+       <input type="text"  id="price2" placeholder="Enter price">
+       <input type="submit">
+    </form>
+
+    <script>
+        function Author(name, year, nationality) {
+            this.name = name;
+            this.year = year;
+            this.nationality = nationality;
+        }
+
+        function Book(title, author, genre, price) {
+            this.title = title;
+            this.author = author;
+            this.genre = genre;
+            this.price = price;
+        }
+
+        let author;
+        let books = [];
+
+        let authorForm = document.querySelector("#authorForm");
+        authorForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            let name = document.getElementById("authorname").value;
+            let year = document.getElementById("authordate").value;
+            let nationality = document.getElementById("authornat").value;
+            author = new Author(name, year, nationality);
+            authorForm.reset();
+        });
+
+        let bookForm1 = document.querySelector("#bookForm1");
+        bookForm1.addEventListener("submit", function(event) {
+            event.preventDefault();
+            let title = document.getElementById("booktitle1").value;
+            let genre = document.getElementById("bookgenre1").value;
+            let price = document.getElementById("price1").value;
+            let book = new Book(title, author, genre, price);
+            books.push(book);
+            console.log(books);
+            bookForm1.reset();
+        });
+
+        let bookForm2 = document.querySelector("#bookForm2");
+        bookForm2.addEventListener("submit", function(event) {
+            event.preventDefault();
+            let title = document.getElementById("booktitle2").value;
+            let genre = document.getElementById("bookgenre2").value;
+            let price = document.getElementById("price2").value;
+            let book = new Book(title, author, genre, price);
+            books.push(book);
+            console.log(books);
+            bookForm2.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaurya National Bank</title>
+   <style>
+ 
+    #head>div{
+        height: 100px;
+        width: 35%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 30%;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    #head div label{
+        font-size: 18px;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+        color: rgb(0, 0, 0);
+    }
+    head div input {
+        width: 5px;
+        height: 20px;
+    }
+    .img{
+        height: 100vh;
+        width: 100vw;
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.8;
+    }
+   
+   </style>
+</head>
+
+<body  class="img"    style="background-image: url(https://img.freepik.com/premium-photo/banking-default-bank-crisis-as-banks-drowning-debt-with-financial-instability-insolvency-concept-global-market-problem-as-3d-illustration-generative-ai_117038-5703.jpg);">
+  
+
+<div id="display">
+    <h2>
+        Check Balance
+    </h2>
+    <h3></h3>
+    <button id="btn3">calculatestotal</button>
+</div>
+<div id="head">
+<div >
+    <label for=""> Enter your Account NO. </label> <br>
+    <input type="text" placeholder="Enter your Account" id="no"  >
+</div>
+<div  >
+    <label for="">Enter deposite Amount</label> <br>
+    <input type="text"    placeholder="enter deposit Amount" id="name"><br>
+    <button id="btn"
+    >submit</button>
+</div>
+<div >
+    <label for="">Enter withdrawal Amount</label> <br>
+    <input type="text" id="withd" placeholder="enter withdrawal Amount">
+    <br>
+    <button id="btn2">submit</button>
+</div>
+
+<button id="active"
+>Check Active Account</button>
+<h2 id="show2"></h2>
+</div>
+
+</body>
+<script>
+    // Task: Implement a bank account management system using JavaScript objects and functions.
+// Instructions:
+// Create a constructor function called BankAccount that takes accountNumber, name, type, and balance as arguments.
+// Inside the constructor, initialize the properties of the bank account object.
+// Add the following methods to the BankAccount prototype:
+// deposit(amount) - Deposits the specified amount into the account.
+// withdraw(amount) - Withdraws the specified amount from the account if the balance is sufficient.
+// checkBalance() - Prints the account's balance.
+// isActive() - Checks and returns whether the account is active.
+// Create multiple BankAccount objects representing different accounts.
+
+// Perform a series of deposit, withdrawal, and balance check operations on these accounts.
+
+// Test the isActive method to check if the accounts are active.
+
+// Implement a function getTotalBalance that calculates and returns the total balance of all active accounts.
+
+// Test the getTotalBalance function to display the total balance of all active accounts.
+
+let show=document.querySelector("#display > h2")
+let show1=document.querySelector("#display  h3")
+let button3=document.getElementById("btn3");
+
+let button1 = document.getElementById("btn")
+let button2 = document.getElementById("btn2");
+let showActive=document.getElementById("show2")
+
+function BankAccount(accountNumber,name,type,balance,isActive){
+    this.accountNumber=accountNumber;
+    this.name=name;
+    this.type=type;
+    this.balance=balance;
+    this.isActive=isActive;
+
+    this.deposit =function(amount){
+        this.balance+=amount;
+        // console.log(`Your Updated balance is ${this.balance}`)
+        show.innerText=`Your Updated balance is ${this.balance} rs`
+    }
+    this.withdraw=function(amount){
+        // let amountWithdraw = parseFloat(document.getElementById("withdrawAmount").value);
+        if(this.balance > amount){
+           this.balance-=amount
+           show.innerText=`Your updated balance is ${this.balance} rs`
+        }
+        else{
+            show.innerText="Insufficent Balance"
+        }
+    }
+    this.isActive1=function(){
+        if(this.balance <0){
+           showActive.innerText= "Account is not Active"
+          
+        }
+        else{
+          showActive.innerText="Account is Active"
+        }
+    }
+}
+
+
+ let account3=new BankAccount(1236564,"Harsh",'saving',400,false);
+let  account1=new BankAccount(12344,"shaurya",'saving',4000,true);
+ let account2=new BankAccount(123433,"nipun",'current',2000,true);
+// account1.deposit(3000);
+// account1.deposit(dep)
+// account1.withdrawl(6000)
+let arr=[account1,account2,account3];
+
+function depositToAccount() {
+ 
+  let accountNo = parseFloat(document.getElementById("no").value);
+  let dep = parseFloat(document.getElementById("name").value);
+
+  for (let i = 0; i < arr.length; i++) {
+    if (accountNo === arr[i].accountNumber) {
+      arr[i].deposit(dep);
+      break; // Once a matching account is found, exit the loop
+    }
+  }
+  document.getElementById("name").value=""
+}
+function withdrawalAmount(){
+    var amountWithdraw = parseFloat(document.getElementById("withd").value);
+    let accountNo = parseFloat(document.getElementById("no").value);
+    for (let j = 0; j < arr.length; j++) {
+        if (accountNo === arr[j].accountNumber) {
+            arr[j].withdraw(amountWithdraw); // Changed method name to "withdrawal1"
+            break;
+        }
+    }
+    document.getElementById("withd").value = "";
+}
+
+
+
+button2.addEventListener("click",function(){
+    withdrawalAmount()
+    document.getElementById("withd").value = "";
+   
+})
+
+button1.addEventListener("click", function(){
+depositToAccount();
+document.getElementById("name").value=""
+});
+
+let button4 = document.getElementById("active");
+button4.addEventListener("click", function(){
+    let accountNo = parseFloat(document.getElementById("no").value);
+     for(let i = 0; i < arr.length; i++){
+        if(accountNo === arr[i].accountNumber){
+            arr[i].isActive1(); // Call the isActive1 function
+        }
+     }
+});
+
+       
+
+let sum=0
+arr.forEach((ele)=>{
+    if(ele.isActive==true
+        ){
+           let res=ele.balance 
+           sum+=res
+        }
+       
+})
+
+
+button3.addEventListener("click",function(){
+
+    show1.innerText = `Your total Balance is ${sum} rs  `;
+});
+
+
+</script>
+</html>
