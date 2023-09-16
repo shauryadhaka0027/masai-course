@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+    <script>
+        function FourWheeler(brandName, topSpeed, averagePerLiter, fuelType){
+            this.brandName = brandName;
+            this.topSpeed = topSpeed;
+            this.averagePerLiter = averagePerLiter;
+            this.fuelType = fuelType;
+        }
+
+        FourWheeler.prototype.accelerate = function(){
+            console.log(`Car is accelerating`);
+        }
+
+        FourWheeler.prototype.brake = function(){
+            console.log(`Apply brake`);
+        }
+
+        FourWheeler.prototype.airBags = function(){
+            console.log(`Open airbags`);
+        }
+
+        function Car(brandName, topSpeed, averagePerLiter, fuelType, numDoors){
+            FourWheeler.call(this, brandName, topSpeed, averagePerLiter, fuelType);
+            this.numDoors = numDoors;
+        }
+
+        Car.prototype = Object.create(FourWheeler.prototype);
+        Car.prototype.constructor = Car;
+
+        const myCar = new Car('Toyota', 120, 19, "Diesel", 4);
+        console.log(myCar);
+        myCar.accelerate()
+    </script>
+</html>
