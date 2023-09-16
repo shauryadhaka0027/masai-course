@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://wallpapers.com/images/hd/4k-silver-car-next-to-building-1gd91djt8etqznsa.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h2>Vehicle Prototype</h2>
+        <form id="fm">
+            <input type="text" placeholder="Enter Brand " id="brand">
+            <input type="text" placeholder="Enter model  " id="model">
+            <input type="text" placeholder="Enter Speed " id="speed">
+            <input type="text" placeholder="Enter FuelTYpe" id="fuel">
+            <input type="text" placeholder="Enter numberOfWheels " id="wheel">
+            <input type="submit">
+        </form>
+    
+ <script>
+    function Vehicle(brand, model, speed, fueltype) {
+        this.brand = brand;
+        this.model = model;
+        this.speed = speed;
+        this.fueltype = fueltype;
+    }
+
+    Vehicle.prototype.accelerate = function() {
+        console.log(`should increase the speed of the vehicle.`);
+    }
+
+    Vehicle.prototype.brake = function() {
+        console.log(` should decrease the speed.`);
+    }
+
+    Vehicle.prototype.refuel = function() {
+        console.log(`should log a message indicating the vehicle is refueling.`);
+    }
+
+    function Car(brand, model, speed, fueltype, numberOfWheels) {
+        Vehicle.call(this, brand, model, speed, fueltype);
+        this.numberOfWheels = numberOfWheels;
+    }
+
+    Car.prototype = Object.create(Vehicle.prototype);
+
+    Car.prototype.honk = function() {
+        console.log(`honking sound`);
+    }
+
+    let myform = document.querySelector("#fm");
+
+    myform.addEventListener("submit", function(e) {
+        e.preventDefault();
+        let brand1 = document.getElementById("brand").value;
+        let model1 = document.getElementById("model").value;
+        let speed1 = document.getElementById("speed").value;
+        let fuel1 = document.getElementById("fuel").value;
+        let wheel1 = document.getElementById("wheel").value;
+
+        let vehicle1 = new Vehicle(brand1, model1, speed1, fuel1);
+        let car1 = new Car(brand1, model1, speed1, fuel1, wheel1);
+       console.log(car1)
+        myform.reset();
+    });
+ </script>
+</body>
+</html>

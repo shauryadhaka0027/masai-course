@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ 
+</body>
+<script>
+//     Task : Imagine you are developing a simulation game that involves various kinds of vehicles. Using the concepts of inheritance, prototype chains, and object-oriented design patterns learned in class.
+// Instructions:
+// Create a basic Vehicle constructor function that initializes properties like brand, model, speed, and fuelType.
+
+// Using the prototype, add common methods to the Vehicle object like accelerate(), brake(), and refuel().
+
+// accelerate() should increase the speed of the vehicle.
+// brake() should decrease the speed.
+// refuel() should log a message indicating the vehicle is refueling.
+// Now, create a Car constructor function. The Car function should inherit properties and methods from the Vehicle object. Additionally, Car should have an extra property numberOfWheels and a method honk() that logs a honking sound.
+
+// Similarly, create an Airplane constructor function that inherits from Vehicle. It should have properties numberOfEngines and hasLandingGear and a method takeOff() that logs a message indicating the airplane is taking off.
+
+// Show how you would create a new instance of Car and Airplane, and demonstrate invoking their methods, ensuring that both types of vehicles can still accelerate, brake, and refuel through their prototype chain.
+
+function Vehicle(brand,model,speed,fueltype){
+    this.brand=brand;
+    this.model=model;
+    this.speed=speed;
+    this.fueltype=fueltype
+}
+Vehicle.prototype.accelerate=function(){
+console.log(`should increase the speed of the vehicle.`)
+}
+Vehicle.prototype.brake=function(){
+    console.log(` should decrease the speed.`)
+}
+Vehicle.prototype.refuel=function(){
+    console.log(`should log a message indicating the vehicle is refueling.`)
+}
+let vehicle1= new Vehicle("Honda",2022,120,"petrol")
+
+
+function Car (brand,model,speed,fueltype,numberOfWheels){
+    Vehicle.call(this,brand,model,speed,fueltype);
+    this.numberOfWheels=numberOfWheels
+
+}
+
+
+Car.prototype.honk=function(){
+    console.log(`honking sound`)
+}
+let car1= new Car("Honda",2022,120,"petrol",4)
+
+Object.setPrototypeOf(Car.prototype,Vehicle.prototype);
+console.log(car1)
+
+
+function Airplane (brand,model,speed,fueltype,numberOfEngines, hasLandingGear){
+    Vehicle.call(this,brand,model,speed,fueltype)
+    this.numberOfEngines=numberOfEngines;
+    this.hasLandingGear=hasLandingGear
+}
+Airplane.prototype=Object.create(Vehicle.prototype)
+Airplane.prototype.takeOff = function() {
+    console.log(`The airplane is taking off.`);
+}
+// Create a Vehicle instance
+let vehicle = new Vehicle('RangeRover', 'Defender', 0, 'Petrol');
+
+// Create a Car instance
+let car = new Car('Honda', 'Civic', 0, 'Petrol', 4);
+
+// Create an Airplane instance
+let airplane = new Airplane('Boeing', '747', 0, 'Jet Fuel', 4, true);
+
+vehicle.accelerate();
+vehicle.brake();
+  
+  airplane.refuel()
+  airplane.takeOff()
+</script>
+</html>
