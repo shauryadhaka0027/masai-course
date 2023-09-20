@@ -1,5 +1,6 @@
+
 let displayTime = document.getElementById("displayTime");
-let [hour, minute, second] = [5, 15, 60];
+let [hour, minute, second] = [0, 5, 60];
 let timer = null;
 
 function timerStart(){
@@ -15,11 +16,13 @@ function timerStart(){
             }
         } 
     }
-    let h = hour < 10 ? "0" + hour : hour;
-    let m = minute < 10 ? "0" + minute : minute;
+    let h = hour > 0 ? (hour < 10 ? "0" + hour :hour) + ":" : "";
+    let m = (hour > 0 || minute > 0) ? (minute < 10 ? "0" + minute : minute) + " m :" : "";
     let s = second < 10 ? "0" + second : second;
-    displayTime.innerHTML = h + ":" + m + ":" + s;
+    displayTime.innerHTML = h + m+  + s+" s";
 }
+
+
 
 function startshow(){
     if(timer !== null){
@@ -35,7 +38,7 @@ function pauseshow() {
 function reset() {
     clearInterval(timer);
     [hour, minute, second] = [0, 0, 0];
-    displayTime.innerHTML = "00:00:00";
+    displayTime.innerHTML = "00 s";
 }
 function setCustomTime() {
     let hourInput = document.getElementById("hourInput").value;
