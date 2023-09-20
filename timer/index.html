@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="timer">
+        <h1 id="displayTime">00:00:00</h1>
+        <div id="btn"
+        >
+            <button  onclick="pauseshow()">Pause</button>
+            <button onclick="startshow()">start</button>
+            <button onclick="reset()">Reset</button>
+        </div>
+
+
+        <div>
+            <label for="hourInput">Hours:</label>
+            <input type="number" id="hourInput" min="0" value="0"
+            
+            ">
+            <label for="minuteInput">Minutes:</label>
+            <input type="number" id="minuteInput" min="0" max="59" value="15">
+            <label for="secondInput">Seconds:</label>
+            <input type="number" id="secondInput" min="0" max="59" value="60">
+            <button onclick="setCustomTime()">Set Custom Time</button>
+        </div>
+    </div>
+ 
+    
+</body>
+<script   src="./index.js"></script>
+</html>
